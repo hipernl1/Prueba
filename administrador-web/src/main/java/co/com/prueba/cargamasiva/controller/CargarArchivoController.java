@@ -38,21 +38,20 @@ public class CargarArchivoController implements Serializable {
 	private static final long serialVersionUID = -455286099412965728L;
 
 	private static final String UBICACION_ARCHIVOS = "/home/leonardo/archivo_masivo/prueba";
-	
+
 	private UploadedFile file;
 	private String delimitador;
 	private ArchivoDto archivoDto;
 	private List<String> columnas;
 	private String[] selectedColumnas;
 	private List<ItemDto> listItem;
-	
+
 	public CargarArchivoController() {
 		columnas = new ArrayList<String>();
 	}
-	
 
 	@Inject
-    private ArchivoFacade archivoFacade;
+	private ArchivoFacade archivoFacade;
 
 	public UploadedFile getFile() {
 		return file;
@@ -75,27 +74,22 @@ public class CargarArchivoController implements Serializable {
 	}
 
 	public void fileUploadListener(FileUploadEvent e) {
-
 		try {
 			this.file = e.getFile();
 			guardarArchivo(file);
 		} catch (IOException e1) {
 			System.err.println("Error al almacenar el archico " + e1.fillInStackTrace());
 		}
-		// Print out the information of the file
-		System.out.println(
-				"Uploaded File Name Is :: " + file.getFileName() + " :: Uploaded File Size :: " + file.getSize());
 	}
 
 	/**
 	 * Almacena el archivo en el servidor y lo registra en la Bd
+	 * 
 	 * @param file
 	 * @throws IOException
 	 */
 	private void guardarArchivo(UploadedFile file) throws IOException {
-		
 		String filename = FilenameUtils.getName(file.getFileName());
-
 		String basename = FilenameUtils.getBaseName(filename) + "_";
 		String extension = "." + FilenameUtils.getExtension(filename);
 		File fileTemp = File.createTempFile(basename, extension, new File(UBICACION_ARCHIVOS));
@@ -105,20 +99,19 @@ public class CargarArchivoController implements Serializable {
 
 		try {
 			IOUtils.copy(input, output);
-			// Registra el archivo a Cargar 
-			archivoDto = new ArchivoDto(filename,FilenameUtils.getName(fileTemp.getName()), extension, UBICACION_ARCHIVOS);
-			//archivoFacade.guardarArchivo(archivoDto);
-			
-			
+			archivoDto = new ArchivoDto(filename, FilenameUtils.getName(fileTemp.getName()), extension,	UBICACION_ARCHIVOS);
 		} finally {
 			IOUtils.closeQuietly(input);
 			IOUtils.closeQuietly(output);
 		}
 	}
-	
+
+	/**
+	 * Metodo encargado de obtener la primera linea del archivo y extraer sus columnas
+	 */
 	public void seleccionarColumnas() {
 		String[] opciones = null;
-		String nombreArchivo = UBICACION_ARCHIVOS+"/"+archivoDto.getNombreArchivoServidor(); 
+		String nombreArchivo = UBICACION_ARCHIVOS + "/" + archivoDto.getNombreArchivoServidor();
 		try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
 			opciones = reader.readLine().split(delimitador);
 			columnas.addAll(Arrays.asList(opciones));
@@ -126,46 +119,47 @@ public class CargarArchivoController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Metodo encargado de visulizar las columnas seleccionadas en pantalla
+	 */
 	public void subirArchivo() {
-		listItem = new ArrayList<>();		
+		listItem = new ArrayList<>();
 		List<Integer> indices = new ArrayList<>();
-		for(String valor :selectedColumnas) {
-			if(columnas.indexOf(valor) != -1) {
+		for (String valor : selectedColumnas) {
+			if (columnas.indexOf(valor) != -1) {
 				indices.add(columnas.indexOf(valor));
-			}			
+			}
 		}
-		String nombreArchivo = UBICACION_ARCHIVOS+"/"+archivoDto.getNombreArchivoServidor(); 
+		String nombreArchivo = UBICACION_ARCHIVOS + "/" + archivoDto.getNombreArchivoServidor();
 		try (BufferedReader reader = new BufferedReader(new FileReader(nombreArchivo))) {
 			CampaniaDto campania = archivoFacade.consultarUltimaCampania();
 			String linea = "";
-			while((linea = reader.readLine()) != null) {
+			while ((linea = reader.readLine()) != null) {
 				ItemDto item = new ItemDto();
 				String[] column = linea.split(delimitador);
-				for(int i = 0; i < column.length; i++) {
-					if(indices.get(0) == i) {
+				for (int i = 0; i < column.length; i++) {
+					if (indices.get(0) == i) {
 						item.setNombres(column[i]);
 					}
-					if(indices.get(1) == i) {
+					if (indices.get(1) == i) {
 						item.setApellidos(column[i]);
 					}
-					if(indices.get(2) == i) {
+					if (indices.get(2) == i) {
 						item.setTelefonos(column[i]);
 					}
-					if(indices.get(3) == i) {
+					if (indices.get(3) == i) {
 						item.setDireccion(column[i]);
 					}
 				}
 				item.setCodigoCampania(campania.getCodigo());
 				listItem.add(item);
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
-	
-	
 
 	/**
 	 * @return the delimitador
@@ -175,7 +169,8 @@ public class CargarArchivoController implements Serializable {
 	}
 
 	/**
-	 * @param delimitador the delimitador to set
+	 * @param delimitador
+	 *            the delimitador to set
 	 */
 	public void setDelimitador(String delimitador) {
 		this.delimitador = delimitador;
@@ -189,7 +184,8 @@ public class CargarArchivoController implements Serializable {
 	}
 
 	/**
-	 * @param columnas the columnas to set
+	 * @param columnas
+	 *            the columnas to set
 	 */
 	public void setColumnas(List<String> columnas) {
 		this.columnas = columnas;
@@ -203,7 +199,8 @@ public class CargarArchivoController implements Serializable {
 	}
 
 	/**
-	 * @param selectedColumnas the selectedColumnas to set
+	 * @param selectedColumnas
+	 *            the selectedColumnas to set
 	 */
 	public void setSelectedColumnas(String[] selectedColumnas) {
 		this.selectedColumnas = selectedColumnas;
@@ -217,11 +214,11 @@ public class CargarArchivoController implements Serializable {
 	}
 
 	/**
-	 * @param listItem the listItem to set
+	 * @param listItem
+	 *            the listItem to set
 	 */
 	public void setListItem(List<ItemDto> listItem) {
 		this.listItem = listItem;
 	}
 
-	
 }
