@@ -53,26 +53,10 @@ public class CargarArchivoController implements Serializable {
 	@Inject
 	private ArchivoFacade archivoFacade;
 
-	public UploadedFile getFile() {
-		return file;
-	}
-
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}
-
-	public void upload() {
-		if (file != null) {
-			FacesMessage message = new FacesMessage("Exito", file.getFileName() + " fue cargado.");
-			FacesContext.getCurrentInstance().addMessage(null, message);
-		}
-	}
-
-	public void handleFileUpload(FileUploadEvent event) {
-		FacesMessage message = new FacesMessage("Exito", event.getFile().getFileName() + " fue cargado.");
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
+	/**
+	 * Metodfo encargado de realizar el cargue del archivo en el servidor
+	 * @param e
+	 */
 	public void fileUploadListener(FileUploadEvent e) {
 		try {
 			this.file = e.getFile();
@@ -220,5 +204,11 @@ public class CargarArchivoController implements Serializable {
 	public void setListItem(List<ItemDto> listItem) {
 		this.listItem = listItem;
 	}
+	public UploadedFile getFile() {
+		return file;
+	}
 
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
 }
