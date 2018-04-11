@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+        <ui:composition template="/layout/template.xhtml">
+	        <ui:define name="title">
+	            <h:outputText value="#{msg.titulo_administrar_carga_masiva}"></h:outputText>
+	        </ui:define>
+	        
+	        <br></br>
+	        <br></br>
+	
+	        <ui:define name="body">
+	        	
+		           
+		           <br></br>
+		           <p:panelGrid columns="2" header="#{msg.titulo_solicitar_cargue_archivo}" cellpadding="5">
+			           <h:form enctype="multipart/form-data" style="width:500px">
+							<p:fileUpload value="#{cargarArchivoController.file}" mode="advanced"
+										fileUploadListener="#{cargarArchivoController.fileUploadListener}"
+										allowTypes="/(\.|\/)(xls|csv|txt)$/"
+										update="messages"
+										uploadLabel="#{msg.bnt_cargar_archivo}"
+										cancelLabel="#{msg.bnt_cancelar}"
+										label="#{msg.bnt_seleccionar}"
+										
+										>
+							</p:fileUpload>
+							<p:growl id="messages" showDetail="true" />							
+							
+							
+						
+						</h:form>  
+						<h:form id="formOpciones">
+							<p:outputLabel for="delimitador" value="#{msg.label_seleccione_delimitador}"  />
+					        <p:selectOneMenu id="delimitador" value="#{cargarArchivoController.delimitador}" effect="fold" editable="true" required="true">
+					        	<f:selectItem itemLabel="#{msg.msg_seleccione}" itemValue="," noSelectionOption="true"/>
+					            <f:selectItem itemLabel="," itemValue="," />
+					            <f:selectItem itemLabel="." itemValue="." />
+					            <f:selectItem itemLabel=";" itemValue="%" />
+					            <f:selectItem itemLabel="%" itemValue="%" />
+					        </p:selectOneMenu>
+					        <p:outputLabel for="seleccionCol" value="#{msg.label_iniciar}" />
+					        <p:commandButton id="seleccionCol" value="#{msg.procesar}" icon="ui-icon-star" actionListener="#{cargarArchivoController.seleccionarColumnas}" update=":formOpciones:columnas" process=":formOpciones" />
+    						
+    						<h:outputLabel for="columnas" value="#{msg.label_seleccione_columnas}" />
+					        <p:selectCheckboxMenu id="columnas" value="#{cargarArchivoController.selectedColumnas}" label="#{msg.label_columna}" panelStyle="width:350px">
+					            <f:selectItems value="#{cargarArchivoController.columnas}" />
+					        </p:selectCheckboxMenu>
+					        
+					        <p:outputLabel for="cargarArchivo" value="#{msg.cargar}" />
+					        <p:commandButton id="cargarArchivo" value="#{msg.cargar}" icon="fa fa-fw fa-upload" actionListener="#{cargarArchivoController.subirArchivo}" update=":formResultado:resultado" process=":formOpciones" />
+    						
+							
+						 </h:form>			 
+					</p:panelGrid>
+					
+					<h:form id="formResultado">
+					<p:panel id="resultado">
+						<p:dataTable var="comercial" value="#{cargarArchivoController.listItem}">
+						    <p:column headerText="#{msg.label_nombres}">
+						        <h:outputText value="#{comercial.nombres}" />
+						    </p:column>
+						 
+						    <p:column headerText="#{msg.label_apellidos}">
+						        <h:outputText value="#{comercial.apellidos}" />
+						    </p:column>
+						 
+						    <p:column headerText="#{msg.label_telefonos}">
+						        <h:outputText value="#{comercial.telefonos}" />
+						    </p:column>
+						 
+						    <p:column headerText="#{msg.label_direcciones}">
+						        <h:outputText value="#{comercial.direccion}" />
+						    </p:column>
+						    <p:column headerText="#{msg.label_codigo_campania}">
+						        <h:outputText value="#{comercial.codigoCampania}" />
+						    </p:column>
+						</p:dataTable>
+						
+					</p:panel>
+					</h:form>
+		       
+	        </ui:define>
+        
+        </ui:composition>
+</html>

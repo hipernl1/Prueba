@@ -1,0 +1,9 @@
+co/com/prueba/cargamasiva/model/boundary/maestro/CampaniaBoundary.class
+co/com/prueba/cargamasiva/model/control/ControlServiceBean.class
+co/com/prueba/cargamasiva/model/entity/util/ParametrosUtil.class
+co/com/prueba/cargamasiva/model/entity/transaccional/Archivo.class
+co/com/prueba/cargamasiva/model/entity/maestros/Campania.class
+co/com/prueba/cargamasiva/model/control/CrudService.class
+co/com/prueba/cargamasiva/model/boundary/transaccional/ArchivoBoundary.class
+co/com/prueba/cargamasiva/model/control/transaccional/ArchivoControl.class
+co/com/prueba/cargamasiva/model/control/maestro/CampaniaControl.class

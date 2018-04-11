@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">#{msg.nombre_aplicacion}</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+        <style type="text/css">
+            .ui-widget{font-size:90% !important;}
+            .ui-layout-unit-content{
+            	background-image:url("#{resource['img/background.jpg']}");
+            	background-size: cover;
+    			background-repeat: no-repeat; 
+    			background-attachment:fixed;            
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" widgetVar="growl"></p:growl>
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{msg.nombre_aplicacion}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{msg.home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{msg.titulo_cargue_masivo}">
+                            <p:menuitem value="#{msg.titulo_cargar_archivo}"      outcome="/opciones/masivo/cargueArchivo" />                            
+                        </p:submenu>
+                        <p:submenu label="#{msg.administracion}" icon="ui-icon-person" style="margin-right:10px">
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer">
+                	<p><a href="#">#{msg.msg_footer}</a></p>
+                </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

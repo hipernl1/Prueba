@@ -1,0 +1,9 @@
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/control/CrudService.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/entity/maestros/Campania.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/entity/transaccional/Archivo.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/control/ControlServiceBean.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/boundary/maestro/CampaniaBoundary.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/boundary/transaccional/ArchivoBoundary.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/entity/util/ParametrosUtil.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/control/maestro/CampaniaControl.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-ejb/src/main/java/co/com/prueba/cargamasiva/model/control/transaccional/ArchivoControl.java

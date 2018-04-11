@@ -1,0 +1,10 @@
+co/com/prueba/cargamasiva/definitions/factory/service/ServicesFactory$ServiciosEnum.class
+co/com/prueba/cargamasiva/definitions/factory/provider/RemoteEJBProvider.class
+co/com/prueba/cargamasiva/definitions/factory/service/ServicesProviderFactory.class
+co/com/prueba/cargamasiva/definitions/factory/service/ServicesFactory.class
+co/com/prueba/cargamasiva/definitions/factory/AdministradorService.class
+co/com/prueba/cargamasiva/definitions/service/CampaniaRemote.class
+co/com/prueba/cargamasiva/definitions/factory/BeanLocator.class
+co/com/prueba/cargamasiva/definitions/service/ArchivoRemote.class
+co/com/prueba/cargamasiva/definitions/factory/provider/LocalEJBProvider.class
+co/com/prueba/cargamasiva/definitions/factory/BeanLocator$GlobalJNDIName.class

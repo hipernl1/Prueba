@@ -1,0 +1,8 @@
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/AdministradorService.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/service/ServicesFactory.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/service/CampaniaRemote.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/service/ServicesProviderFactory.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/provider/LocalEJBProvider.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/service/ArchivoRemote.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/BeanLocator.java
+/home/leonardo/workspace2/Emprendimiento/Prueba/carga_masiva/administrador-Jar-Defs/src/main/java/co/com/prueba/cargamasiva/definitions/factory/provider/RemoteEJBProvider.java
